@@ -84,3 +84,29 @@ SUMX(
     FILTER(data,
     data[rok] = MAX(data[rok])),
 data[srazky])
+
+______________________________
+
+08 suma srazek v minimalnim roce ze vsech lokalit = 
+SUMX(
+    FILTER(data,
+    data[rok] = 
+    MINX(ALL(data),data[rok])),
+data[srazky])
+_______________________
+
+09 podil srazek lokality na srazkach vsech lokalit = 
+VAR vypocet1 = 
+-- suma srazek v dane lokalite
+SUM(data[srazky])
+/
+-- suma srazek ve vsech lokalitach
+SUMX(
+    ALL(data),
+data[srazky])
+
+VAR vypocet2 =
+IFERROR(
+[01 suma srazek] / [03 suma srazek vsechny roky],BLANK())
+
+RETURN vypocet2
