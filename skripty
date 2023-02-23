@@ -54,3 +54,19 @@ SUMX(
     data[rok] = 2000),
 -- krok4: Funkce SUMX() scita sloupec srazky tabulky vracene funkci FILTER()
 data[srazky])
+
+
+_______________________________
+
+05 suma srazek mezirocne = 
+-- suma srazek za aktualni rok
+sum(data[srazky])
+
+-- MÍNUS
+-
+-- suma srazek za predchozi rok
+SUMX(
+    FILTER(
+        ALL(data),
+    data[rok] = SELECTEDVALUE(data[rok]) - 1),
+data[srazky])   
