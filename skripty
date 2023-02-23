@@ -123,3 +123,14 @@ MAXX(
     -- maximalni teplote v dane lokalite
     MAX(data[maximalni_teplota])),
 data[rok])
+
+___________________________
+
+12 pocet dnu bez srazek v dane lokalite = 
+
+-- srazky = 0
+
+COUNTX(
+    FILTER(data,
+    data[srazky] = 0),
+data[datum])
