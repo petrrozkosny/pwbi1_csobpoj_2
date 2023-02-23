@@ -59,6 +59,8 @@ data[srazky])
 _______________________________
 
 05 suma srazek mezirocne = 
+
+IF(SELECTEDVALUE(data[rok]) = MINX(ALL(data),data[rok]),BLANK(),
 -- suma srazek za aktualni rok
 sum(data[srazky])
 
@@ -69,4 +71,4 @@ SUMX(
     FILTER(
         ALL(data),
     data[rok] = SELECTEDVALUE(data[rok]) - 1),
-data[srazky])   
+data[srazky])   )
