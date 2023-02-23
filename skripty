@@ -110,3 +110,16 @@ IFERROR(
 [01 suma srazek] / [03 suma srazek vsechny roky],BLANK())
 
 RETURN vypocet2
+
+
+__________________________________________
+
+11 rok maximalni teploty v dane lokalite = 
+-- maximalni rok maximalni teploty
+
+MAXX(
+    FILTER(data,
+    data[maximalni_teplota] = 
+    -- maximalni teplote v dane lokalite
+    MAX(data[maximalni_teplota])),
+data[rok])
