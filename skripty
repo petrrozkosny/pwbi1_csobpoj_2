@@ -72,3 +72,15 @@ SUMX(
         ALL(data),
     data[rok] = SELECTEDVALUE(data[rok]) - 1),
 data[srazky])   )
+
+
+
+___________________________________________________________
+
+07 suma srazek v maximalnim roce lokality = 
+-- suma srazek v dane lokalite v maximalnim roce dane lokality
+
+SUMX(
+    FILTER(data,
+    data[rok] = MAX(data[rok])),
+data[srazky])
