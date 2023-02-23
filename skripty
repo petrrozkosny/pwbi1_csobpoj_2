@@ -1,0 +1,56 @@
+01 suma srazek = 
+-- scenar 1: Respektuji filtry vizualu, zadne nepridavam,
+-- tj. pouziji zakladni agregacni funkce typu SUM(), MAX(), MIN()
+SUM(data[srazky])
+
+_____________________________
+
+02 suma srazek ruzyne = 
+
+-- scenar2: Respektuji filtry vizualu a pridavam dalsi
+-- tj. pouziji kombinaci funkci SUMX(FILTER()),MAXX(FILTER()), MINX(FILTER()) apod.
+
+SUMX(
+    --krok3: Funkce FILTER() vraci tabulku
+    FILTER(
+    --krok1: Funkce FILTER() prebira tabulku data s jejimi filtry
+    data,
+    --krok2: Funkce FILTER() nastavuje filtr na sloupec lokalita
+    data[lokalita] = "RUZYNE" ),
+    --krok4: Funkce SUMX() scita sloupec srazky tabulky
+    -- vracene funkci FILTER()
+    data[srazky])
+    
+    ____________________________________
+    
+    03 suma srazek vsechny roky = 
+
+-- scenar3: Rusim filtry vizualu a zadne nenastavuji,
+-- tj. pouziji kombinaci funkci SUMX(ALL()), MINX(ALL()), MAXX(ALL()) apod.
+
+SUMX(
+    -- krok1: Funkce ALL() vraci kopii tabulky data zbavenou vsech filtru
+    ALL(data),
+    -- krok2: Funkce SUMX() agraguje sloupec srazky tabulky vracene
+    -- funkci ALL()
+    data[srazky])
+
+
+________________________________________
+
+04 suma srazek rok 2000 = 
+
+-- scenar4: Rusim filtry vizualu a nastavuji si vlastni, tj. pouziji kombinaci funkci
+-- SUMX(FILTER(ALL())), MAXX(FILTER(ALL())) apod.
+
+SUMX(
+    --krok3: Funkce FILTER() vraci tabulku
+    FILTER(
+        -- krok1: Funkce ALL() vratii kopii tabulky data zbavenou
+        -- vsech filtru
+        ALL(data),
+    -- krok2: Funkce FILTER() nastavuje filtr na sloupec rok
+    -- tabulky vracene funkci ALL()
+    data[rok] = 2000),
+-- krok4: Funkce SUMX() scita sloupec srazky tabulky vracene funkci FILTER()
+data[srazky])
