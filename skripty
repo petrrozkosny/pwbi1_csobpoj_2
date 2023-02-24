@@ -266,3 +266,23 @@ _______________________________________________________
 CALCULATE(
     SUM(data[srazky]),  
     USERELATIONSHIP(data[lokalita],dim_oblasti[stanice]))
+    
+    
+ ____________________________
+ 
+ 24 suma srazek dle vybrane hodnoty = 
+
+VAR prubezne_srazky = SUM(data[srazky])
+
+VAR kumulativni_srazky = 
+
+CALCULATE(
+ SUM(data[srazky]),
+--FILTER(
+   -- ALL(data[mesic]),
+    data[mesic] <= SELECTEDVALUE(data[mesic]))
+    --)
+RETURN
+    IF(
+        SELECTEDVALUE(typ_hodnoty[hodnota]) = "kumulativne",
+        kumulativni_srazky,prubezne_srazky)
