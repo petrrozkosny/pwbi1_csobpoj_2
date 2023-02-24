@@ -201,3 +201,13 @@ SUMX(
     && data[rok] = SELECTEDVALUE(data[rok])
     && data[mesic] <= SELECTEDVALUE(data[mesic])),
 data[srazky])
+
+_________________________________________________________________________
+
+dim_datumy = 
+
+ADDCOLUMNS(
+    SELECTCOLUMNS(
+        CALENDARAUTO(),
+    "datum",[Date]),
+"kvartal",QUARTER([datum]))
