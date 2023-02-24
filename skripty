@@ -124,6 +124,28 @@ MAXX(
     MAX(data[maximalni_teplota])),
 data[rok])
 
+
+____________________________________
+
+16 max datum max teploty v max roce = 
+-- maximalni rok pro danou lokalitu
+VAR max_rok = MAX(data[rok])
+-- maximalni teplota v maximalnim roce dane lokality =
+
+VAR max_teplota = 
+MAXX(
+    FILTER(data,
+    data[rok] = max_rok),
+data[maximalni_teplota])
+
+RETURN  
+MAXX(
+    FILTER(data,
+    data[rok] = max_rok
+    && data[maximalni_teplota] = max_teplota),
+data[datum])
+
+
 ___________________________
 
 12 pocet dnu bez srazek v dane lokalite = 
