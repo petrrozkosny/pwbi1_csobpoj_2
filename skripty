@@ -156,3 +156,48 @@ COUNTX(
     FILTER(data,
     data[srazky] = 0),
 data[datum])
+
+______________________________
+
+17 podil nedestivych dnu = 
+COUNTX(
+    FILTER(data,
+    data[srazky] = 0
+    && NOT ISBLANK(data[srazky])
+    ),
+data[datum]) /
+
+COUNT(data[datum])
+
+_________________________________________
+
+18 suma srazek ruzyne = 
+
+SUMX(
+    FILTER(data,
+    data[lokalita] = "RUZYNE"),
+data[srazky])
+
+___________________________________
+
+19 suma srazek predchozi rok = 
+IF(ISFILTERED(data[rok]),
+SUMX(
+    FILTER(
+        ALL(data),
+    data[lokalita] = "RUZYNE"
+    && data[mesic] = SELECTEDVALUE(data[mesic])
+    && data[rok] = SELECTEDVALUE(data[rok]) - 1),
+data[srazky]))
+
+______________________________________
+
+20 suma srazek kumulativne v ruzyni = 
+
+SUMX(
+    FILTER(
+        ALL(data),
+    data[lokalita] = "RUZYNE"
+    && data[rok] = SELECTEDVALUE(data[rok])
+    && data[mesic] <= SELECTEDVALUE(data[mesic])),
+data[srazky])
