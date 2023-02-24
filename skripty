@@ -219,3 +219,43 @@ UNION(
     ROW("hodnota","prubezne"),
     ROW("hodnota","kumulativne")
 )
+
+
+_________________________________________
+
+21 suma srazek v danem roce napric lokalitami = 
+
+-- varianta1: TAKTO NE
+VAR _1 =
+    CALCULATE(
+        SUM(data[srazky]),
+        FILTER(
+            ALL(data),
+        data[rok] = SELECTEDVALUE(data[rok])))
+-- varianta2: Takto ano
+VAR _2 = 
+    CALCULATE(
+        SUM(data[srazky]),
+        ALL(data[lokalita]))
+
+RETURN _2
+_________________________________________
+
+22 suma srazek v prechozim roce v dane lokalite = 
+-- takto v pripade, ze nefunguje varianta 2
+VAR _1 = 
+CALCULATE(
+        SUM(data[srazky]),
+        FILTER(
+            ALL(data[rok]),
+        data[rok] = SELECTEDVALUE(data[rok]) - 1))
+
+VAR _2 = 
+
+CALCULATE(
+    SUM(data[srazky]),
+ 
+   data[rok] = SELECTEDVALUE(data[rok]) - 1)
+
+return _2
+
