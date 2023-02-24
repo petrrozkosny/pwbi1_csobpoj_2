@@ -286,3 +286,17 @@ RETURN
     IF(
         SELECTEDVALUE(typ_hodnoty[hodnota]) = "kumulativne",
         kumulativni_srazky,prubezne_srazky)
+
+
+________________________
+
+26 nazev grafu = 
+
+SWITCH(TRUE(),
+HASONEFILTER(data[lokalita]),
+"Vývoj srážek v lokalitě "&SELECTEDVALUE(data[lokalita]),
+ISFILTERED(data[lokalita]),
+"Vývoj srážek v lokalitách "&
+CONCATENATEX(
+    DISTINCT(data[lokalita]),data[lokalita],", "),
+"Vývoj srážek ve všech lokalitách")
