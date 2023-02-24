@@ -259,3 +259,10 @@ CALCULATE(
 
 return _2
 
+_______________________________________________________
+
+23 suma srazek v zemi = 
+
+CALCULATE(
+    SUM(data[srazky]),  
+    USERELATIONSHIP(data[lokalita],dim_oblasti[stanice]))
